@@ -13,7 +13,6 @@ class InnerBottomSheet extends StatefulWidget {
     this.initialChildSize = 0.5,
     this.wrapWithIosWrapper = false,
     this.controller,
-    this.exportControllers,
     this.topShadow = false,
   });
 
@@ -25,7 +24,6 @@ class InnerBottomSheet extends StatefulWidget {
   final double initialChildSize;
   final bool wrapWithIosWrapper;
   final DraggableScrollableController? controller;
-  final void Function(ScrollController?, DraggableScrollableController?)? exportControllers;
   final bool topShadow;
 
   @override
@@ -47,7 +45,6 @@ class _InnerBottomSheetSState extends State<InnerBottomSheet> {
 
   @override
   void dispose() {
-    widget.exportControllers?.call(null, null);
     super.dispose();
   }
 
@@ -113,8 +110,6 @@ class _InnerBottomSheetSState extends State<InnerBottomSheet> {
           maxChildSize: widget.snapSizes?.last ?? widget.maxChildSize,
           initialChildSize: widget.initialChildSize,
           builder: (context, scrollController) {
-            widget.exportControllers?.call(scrollController, widget.controller);
-
             if (widget.wrapWithIosWrapper) {
               return IosWrapper(
                 wrapTopPadding: kDebugMode ? 25 : null,
