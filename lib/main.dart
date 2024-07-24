@@ -101,13 +101,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         wrapWithIosWrapper: true,
                         topShadow: true,
                         child: Column(
-                          children: List.generate(10, (index) {
-                            return Container(
-                              height: 100,
-                              color: Colors.primaries[index % Colors.primaries.length],
-                              child: Center(child: Text('Container $index')),
-                            );
-                          }),
+                          children: [
+                            Image.network('https://docs.flutter.dev/assets/images/dash/dash-fainting.gif'),
+                            ...List.generate(15, (index) {
+                              return Container(
+                                height: 150,
+                                color: Colors.primaries[index % Colors.primaries.length],
+                                child: Center(child: Text('Container $index')),
+                              );
+                            })
+                          ],
                         ),
                       ),
                     ),
@@ -170,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: kMinInteractiveDimension),
+        padding: overlayVisible.value ? const EdgeInsets.only(bottom: kMinInteractiveDimension) : EdgeInsets.zero,
         child: FloatingActionButton(
           onPressed: () => setState(() => overlayVisible.value = !overlayVisible.value),
           tooltip: 'FAB',
