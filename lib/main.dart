@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return SafeArea(
           top: false,
           child: Padding(
-            padding: EdgeInsets.only(bottom: navigationBottomBarHeight + 0.5),
+            padding: EdgeInsets.only(bottom: navigationBottomBarHeight),
             child: ValueListenableBuilder<bool>(
                 valueListenable: overlayVisible,
                 builder: (context, value, child) {
